@@ -27,7 +27,7 @@ export function LogBook() {
 	const [emotion, setEmotion] = useState(5);
 	const [enjoyment, setEnjoyment] = useState(5);
 	const [format, setFormat] = useState("");
-	const [pages, setPages] = useState(5);
+	const [pages, setPages] = useState(0);
 	const [dateCreated, setDateCreated] = useState(new Date());
 
 	const [open, setOpen] = useState(false);
@@ -155,6 +155,7 @@ export function LogBook() {
 						id="genre-field"
 						label="Genre"
 						variant="outlined"
+						sx={{ margin: "5px" }}
 						onChange={(e) => setGenre(e.target.value)}
 						value={genre}
 						required
@@ -163,6 +164,7 @@ export function LogBook() {
 						id="format-field"
 						label="Format"
 						variant="outlined"
+						sx={{ margin: "5px" }}
 						onChange={(e) => setFormat(e.target.value)}
 						value={format === 0 ? "" : format}
 						required
@@ -171,6 +173,7 @@ export function LogBook() {
 						id="pages-field"
 						label="Page Number"
 						variant="outlined"
+						sx={{ margin: "5px" }}
 						onChange={(e) => setPages(e.target.value)}
 						value={pages === 0 ? "" : pages}
 						required
