@@ -57,12 +57,7 @@ export function LogBook() {
 			<Button color="secondary" size="small" onClick={undoAndClose}>
 				UNDO
 			</Button>
-			<IconButton
-				size="small"
-				aria-label="close"
-				color="inherit"
-				onClick={handleClose}
-			>
+			<IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
 				<CloseIcon fontSize="small" />
 			</IconButton>
 		</Fragment>
@@ -218,7 +213,7 @@ export function LogBook() {
 						></RatingInput>
 					</Box>
 
-					<Button variant="outlined" type="submit">
+					<Button variant="outlined" type="submit" color="success">
 						Submit
 					</Button>
 
