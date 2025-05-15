@@ -117,6 +117,7 @@ export function LogBook() {
 						id="title-field"
 						label="Title"
 						variant="outlined"
+						sx={{ margin: "5px" }}
 						onChange={(e) => setTitle(e.target.value)}
 						value={title}
 						required
@@ -125,6 +126,7 @@ export function LogBook() {
 						id="author-field"
 						label="Author"
 						variant="outlined"
+						sx={{ margin: "5px" }}
 						onChange={(e) => setAuthor(e.target.value)}
 						value={author}
 						required
@@ -133,6 +135,7 @@ export function LogBook() {
 						id="month-field"
 						label="Month"
 						variant="outlined"
+						sx={{ margin: "5px" }}
 						onChange={(e) => setMonth(e.target.value)}
 						inputProps={{ maxLength: 3 }}
 						value={month}
@@ -142,6 +145,7 @@ export function LogBook() {
 						id="year-publ-field"
 						label="Year Published"
 						variant="outlined"
+						sx={{ margin: "5px" }}
 						onChange={(e) => setYearPubl(e.target.value)}
 						inputProps={{ maxLength: 4 }}
 						value={yearPubl === 0 ? "" : yearPubl}
