@@ -43,7 +43,6 @@ export function Login() {
 					variant="outlined"
 					sx={{ margin: "5px" }}
 					onChange={handleChange}
-					value={user.email}
 					required
 				/>
 				<TextField
@@ -52,7 +51,6 @@ export function Login() {
 					variant="outlined"
 					sx={{ margin: "5px" }}
 					onChange={handleChange}
-					value={user.password}
 					required
 				/>
 				<Button color="success" variant="outlined" type="submit">
