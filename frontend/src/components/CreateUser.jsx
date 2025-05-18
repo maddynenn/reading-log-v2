@@ -1,3 +1,3 @@
 export function CreateUser() {
-	return <></>;
+	return <p>Create your account!</p>;
 }
