@@ -71,8 +71,8 @@ export async function getOneUser(id) {
 }
 
 export async function createUser(user) {
-	console.log(user);
-	const response = await axios.post(`${URL}/users`);
+	console.log("aqui" + user.firstName);
+	const response = await axios.post(`${URL}/users`, user);
 
 	return response;
 }
