@@ -15,7 +15,6 @@ export function Login() {
 	const navigate = useNavigate();
 
 	function handleChange(e) {
-		console.log("change: " + e.target.name + " " + e.target.value);
 		setUser({
 			...user,
 			[e.target.name]: [e.target.value],
@@ -43,6 +42,8 @@ export function Login() {
 					label="Email"
 					variant="outlined"
 					sx={{ margin: "5px" }}
+					name="email"
+					value={user.email}
 					onChange={handleChange}
 					required
 				/>
@@ -51,6 +52,8 @@ export function Login() {
 					label="Password"
 					variant="outlined"
 					sx={{ margin: "5px" }}
+					name="password"
+					value={user.password}
 					onChange={handleChange}
 					required
 				/>
