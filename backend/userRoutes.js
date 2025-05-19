@@ -35,23 +35,23 @@ userRoutes.route("/users/:id").get(async (request, response) => {
 
 userRoutes.route("/users").post(async (request, response) => {
 	let db = database.getDb();
-	const takenEmail = await db.collection("users").findOne({ email: request.body.email });
-	if (takenEmail) {
-		alert("This email is taken");
-	} else {
-		const hash = await bcrypt.hash(request.body.password, SALT_ROUNDS);
+	//const takenEmail = await db.collection("users").findOne({ email: request.body.email });
+	//if (takenEmail) {
+	//response.json({ message: "The email is taken" });
+	//} else {
+	const hash = await bcrypt.hash(request.body.password, SALT_ROUNDS);
 
-		let mongoObject = {
-			firstName: request.body.firstName,
-			lastName: request.body.lastName,
-			email: request.body.email,
-			password: hash,
-			joinDate: new Date(),
-		};
+	let mongoObject = {
+		firstName: request.body.firstName,
+		lastName: request.body.lastName,
+		email: request.body.email,
+		password: hash,
+		joinDate: new Date(),
+	};
 
-		let data = await db.collection("users").insertOne(mongoObject);
-		response.json(data);
-	}
+	let data = await db.collection("users").insertOne(mongoObject);
+	response.json(data);
+	//}
 });
 
 userRoutes.route("/users/:id").put(async (request, response) => {
