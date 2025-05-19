@@ -13,6 +13,7 @@ export function CreateUser() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
+		console.log(e);
 		let data = await createUser(user);
 		if (data.status !== 200) {
 			alert("Create user failed");
@@ -21,6 +22,7 @@ export function CreateUser() {
 	}
 
 	function handleChange(e) {
+		console.log(e.target.name + e.target.value);
 		setUser({
 			...user,
 			[e.target.name]: e.target.value,
@@ -35,7 +37,9 @@ export function CreateUser() {
 					label="First Name"
 					variant="outlined"
 					sx={{ margin: "5px" }}
-					onChange={handleChange}
+					value={user.firstName}
+					name="firstName"
+					onChange={(e) => handleChange(e)}
 					required
 				/>
 				<TextField
@@ -43,6 +47,8 @@ export function CreateUser() {
 					label="Last Name"
 					variant="outlined"
 					sx={{ margin: "5px" }}
+					value={user.lastName}
+					name="lastName"
 					onChange={handleChange}
 					required
 				/>
@@ -51,6 +57,8 @@ export function CreateUser() {
 					label="Email"
 					variant="outlined"
 					sx={{ margin: "5px" }}
+					value={user.email}
+					name="email"
 					onChange={handleChange}
 					required
 				/>
@@ -59,6 +67,8 @@ export function CreateUser() {
 					label="Password"
 					variant="outlined"
 					sx={{ margin: "5px" }}
+					value={user.password}
+					name="password"
 					onChange={handleChange}
 					required
 				/>

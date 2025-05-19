@@ -15,6 +15,7 @@ export function Login() {
 	const navigate = useNavigate();
 
 	function handleChange(e) {
+		console.log("change: " + e.target.name + " " + e.target.value);
 		setUser({
 			...user,
 			[e.target.name]: [e.target.value],
