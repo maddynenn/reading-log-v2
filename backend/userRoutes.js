@@ -84,9 +84,11 @@ userRoutes.route("/users/:id").delete(async (request, response) => {
 
 userRoutes.route("/users/login").post(async (request, response) => {
 	let db = database.getDb();
-	console.log(request.body.email);
+	console.log("Request email:", request.body.email);
+	console.log("Request email length:", request.body.email.length);
+	//console.log("Trimmed email:", request.body.email.trim());
 	const user = await db.collection("users").findOne({ email: request.body.email });
-
+	console.log(user);
 	if (user) {
 		let confirmation = await bcrypt.compare(request.body.password, user.password);
 		if (confirmation) {
