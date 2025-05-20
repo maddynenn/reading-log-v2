@@ -84,6 +84,7 @@ userRoutes.route("/users/:id").delete(async (request, response) => {
 
 userRoutes.route("/users/login").post(async (request, response) => {
 	let db = database.getDb();
+	console.log(request.body.email);
 	const user = await db.collection("users").findOne({ email: request.body.email });
 
 	if (user) {

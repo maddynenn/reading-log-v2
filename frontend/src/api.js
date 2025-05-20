@@ -93,8 +93,10 @@ export async function verifyUser(user) {
 	const response = await axios.post(`${URL}/users/login`, user);
 
 	if (response.data.success) {
+		console.log("success!" + response.data);
 		return response.data.token;
 	} else {
+		console.log("failed here: " + response.data.message);
 		return;
 	}
 }
