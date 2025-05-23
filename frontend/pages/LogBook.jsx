@@ -11,6 +11,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Fragment } from "react";
 import { ThemeContext } from "@emotion/react";
 import { deleteBookEntry } from "../src/api";
+import * as jwt_decode from "jwt-decode";
 
 export function LogBook() {
 	const [title, setTitle] = useState("");
@@ -29,6 +30,7 @@ export function LogBook() {
 	const [format, setFormat] = useState("");
 	const [pages, setPages] = useState(0);
 	const [dateCreated, setDateCreated] = useState(new Date());
+	const [user, setUser] = useState("");
 
 	const [open, setOpen] = useState(false);
 
@@ -63,6 +65,13 @@ export function LogBook() {
 		</Fragment>
 	);
 
+	function fetchUserId() {
+		const token = sessionStorage.getItem("User");
+		const decodedUser = jwt_decode.jwtDecode(token);
+		const userId = decodedUser._id;
+		return userId;
+	}
+
 	async function handleSubmit(event) {
 		const createdObject = {
 			title: title,
@@ -81,6 +90,7 @@ export function LogBook() {
 			format: format,
 			pages: pages,
 			dateCreated: new Date(),
+			user: fetchUserId(),
 		};
 
 		//temporarily grabbing the id of the created object in case user wants to undo
