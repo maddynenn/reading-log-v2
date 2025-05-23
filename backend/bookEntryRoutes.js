@@ -82,6 +82,7 @@ bookEntryRoutes.route("/bookEntries/:id").put(async (request, response) => {
 			format: request.body.format,
 			pages: request.body.pages,
 			dateCreated: request.body.dateCreated,
+			user: request.body.user,
 		},
 	};
 	let data = db

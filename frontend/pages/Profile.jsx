@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import * as jwt_decode from "jwt-decode";
 import { getAllBookEntries } from "../src/api";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
 
 export function Profile() {
 	const [user, setUser] = new useState({});
 	const [myBooks, setMyBooks] = new useState([]);
+	let date = new Date(user.joinDate);
+	let dateString = date.toString();
 
 	useEffect(() => {
 		async function loadAllUserData() {
@@ -22,8 +26,15 @@ export function Profile() {
 
 	return (
 		<>
-			<h1>Profile</h1>
-			<h2>My book logs</h2>
+			<h1>My Profile</h1>
+			<Box>
+				<h2>User Info</h2>
+				<Typography>
+					Name: {user.firstName} {user.lastName}
+				</Typography>
+				<Typography>Date Joined: {dateString.slice(4, 15)}</Typography>
+			</Box>
+			<h2>My Books</h2>
 			<div>
 				{myBooks.map((entry) => {
 					return <p>{entry.title}</p>;
