@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getOneBookEntry } from "../src/api";
 
 export function FullLog() {
 	const [entry, setEntry] = useState({});
 	let params = useParams();
+	const navigate = useNavigate();
 	let id = params.id;
 
 	useEffect(() => {
 		async function loadEntry() {
-			id = id.slice(1, id.length);
 			console.log(id);
 			let data = await getOneBookEntry(id);
 			setEntry(data);
