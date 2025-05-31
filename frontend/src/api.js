@@ -13,7 +13,6 @@ export async function getAllBookEntries() {
 
 export async function getOneBookEntry(id) {
 	id = id.slice(1, id.length);
-	console.log("here: " + id);
 	const response = await axios.get(`${URL}/bookEntries/${id}`);
 	if (response.status === 200) {
 		return response.data;

@@ -10,7 +10,6 @@ export function FullLog() {
 
 	useEffect(() => {
 		async function loadEntry() {
-			console.log(id);
 			let data = await getOneBookEntry(id);
 			setEntry(data);
 		}

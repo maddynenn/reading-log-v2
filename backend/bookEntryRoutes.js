@@ -25,7 +25,6 @@ bookEntryRoutes.route("/bookEntries").get(async (request, response) => {
 
 // 2 Retrieve One
 bookEntryRoutes.route("/bookEntries/:id").get(async (request, response) => {
-	console.log("id trying to use: " + request.params.id);
 	let db = database.getDb();
 	let data = await db.collection("bookEntry").findOne({ _id: new ObjectId(request.params.id) });
 	if (Object.keys(data).length > 0) {
