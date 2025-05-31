@@ -1,7 +1,25 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getOneBookEntry } from "../src/api";
+
 export function FullLog() {
-    return (
-        <>
-            <h1>Log</h1>
-        </>
-    )
+	const [entry, setEntry] = useState({});
+	let params = useParams();
+	let id = params.id;
+
+	useEffect(() => {
+		async function loadEntry() {
+			console.log(id);
+			let data = await getOneBookEntry(id);
+			setEntry(data);
+		}
+		loadEntry();
+	}, [id]);
+
+	return (
+		<>
+			<h1>Log</h1>
+			<h2>{entry.title}</h2>
+		</>
+	);
 }

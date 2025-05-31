@@ -11,7 +11,7 @@ export async function getAllBookEntries() {
 	}
 }
 
-export async function getOneBookEntry() {
+export async function getOneBookEntry(id) {
 	const response = await axios.get(`${URL}/bookEntries/${id}`);
 	if (response.status === 200) {
 		return response.data;
@@ -19,7 +19,6 @@ export async function getOneBookEntry() {
 		return;
 	}
 }
-
 
 export async function createBookEntry(bookEntry) {
 	const response = await axios.post(`${URL}/bookEntries`, bookEntry);
@@ -60,7 +59,6 @@ export async function getAllUsers() {
 		return;
 	}
 }
-
 
 export async function getOneUser(id) {
 	const response = await axios.get(`${URL}/users/${id}`);
