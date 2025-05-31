@@ -20,6 +20,7 @@ export async function getOneBookEntry() {
 	}
 }
 
+
 export async function createBookEntry(bookEntry) {
 	const response = await axios.post(`${URL}/bookEntries`, bookEntry);
 
@@ -59,6 +60,7 @@ export async function getAllUsers() {
 		return;
 	}
 }
+
 
 export async function getOneUser(id) {
 	const response = await axios.get(`${URL}/users/${id}`);

@@ -1,10 +1,12 @@
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { formatDate } from "../utils";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export function EntryCard({ entry }) {
 	return (
-		<>
+		<Link to={`/log/:${entry._id}`}>
 			<Box
 				sx={{
 					width: "100%",
@@ -23,6 +25,6 @@ export function EntryCard({ entry }) {
 				<Typography>{entry.author}</Typography>
 				<Typography>{formatDate(entry.dateCreated)}</Typography>
 			</Box>
-		</>
+		</Link>
 	);
 }
