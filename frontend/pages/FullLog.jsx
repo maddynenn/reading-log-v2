@@ -7,10 +7,12 @@ import Typography from "@mui/material/Typography";
 import { rgbToHex } from "@mui/material";
 import { formatDate } from "../src/utils";
 import axios from "axios";
+import Button from "@mui/material/Button";
 
 export function FullLog() {
 	const [entry, setEntry] = useState({});
-	const [other, setOther] = useState({});
+	const [other, setOther] = useState([]);
+	const [thumbNail, setThumbNail] = useState("");
 	let params = useParams();
 	const navigate = useNavigate();
 	let id = params.id;
@@ -22,10 +24,12 @@ export function FullLog() {
 
 			let bookData = await axios
 				.get(
-					`https://www.googleapis.com/books/v1/volumes?q=${data.title}+inauthor:${data.author}&maxResults=1&key=AIzaSyDktmhTLQB4VlwG1JpToRUenD90EMhRBYo`
+					`https://www.googleapis.com/books/v1/volumes?q=${data.title}+inauthor:${data.author}&maxResults=5&key=AIzaSyDktmhTLQB4VlwG1JpToRUenD90EMhRBYo`
 				)
-				.then((res) => console.log(res));
-			setOther(bookData);
+				.then((res) => setOther(res.data.items))
+				.catch((err) => console.log(err));
+			//setOther(bookData);
+			//console.log(bookData);
 		}
 		loadEntry();
 	}, [id]);
@@ -64,7 +68,6 @@ export function FullLog() {
 				<h1>{entry.title}</h1>
 				<h2>by {entry.author}</h2>
 			</Box>
-
 			<Box
 				sx={{
 					display: "flex",
@@ -128,6 +131,15 @@ export function FullLog() {
 					<Typography>{formatDate(entry.dateCreated)}</Typography>
 				</Box>
 			</Box>
+			{other.map((book) => {
+				let tn = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail;
+				console.log(book);
+				return (
+					<Button>
+						<img width="80px" src={tn}></img>{" "}
+					</Button>
+				);
+			})}
 		</Box>
 	);
 }
