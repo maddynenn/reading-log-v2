@@ -43,16 +43,41 @@ export function FullLog() {
 
 			<Box
 				sx={{
-					display: "grid",
-					gridTemplateColumns: "1fr 1fr",
-					gap: 1,
+					display: "flex",
 					width: "100%",
+					padding: "4px",
+					textAlign: "left",
 				}}
 			>
-				<Typography></Typography>
-				<Typography>Genre: {entry.genre}</Typography>
-				<Typography>Year Published: {entry.yearPubl}</Typography>
-				<Typography>Page Number: {entry.pages}</Typography>
+				<Box
+					sx={{
+						textAlign: "left",
+						paddingX: "20px",
+					}}
+				>
+					<Typography>Published</Typography>
+					<Typography>{entry.yearPubl}</Typography>
+				</Box>
+
+				<Box
+					sx={{
+						textAlign: "left",
+						paddingX: "20px",
+					}}
+				>
+					<Typography>Genre</Typography>
+					<Typography>{entry.genre}</Typography>
+				</Box>
+
+				<Box
+					sx={{
+						textAlign: "left",
+						paddingX: "20px",
+					}}
+				>
+					<Typography>Pages</Typography>
+					<Typography>{entry.pages}</Typography>
+				</Box>
 			</Box>
 		</Box>
 	);
