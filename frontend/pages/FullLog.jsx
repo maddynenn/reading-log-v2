@@ -30,6 +30,7 @@ export function FullLog() {
 				top: 50,
 				left: 50,
 				width: "50%",
+				bgcolor: "#37704c",
 			}}
 		>
 			<Box
@@ -47,6 +48,7 @@ export function FullLog() {
 						margin: 0,
 					},
 					paddingY: "10px",
+					color: "white",
 				}}
 			>
 				<h1>{entry.title}</h1>
@@ -60,6 +62,8 @@ export function FullLog() {
 					width: "100%",
 					padding: "4px",
 					textAlign: "left",
+					color: "white",
+					fontFamily: "Arial, sans-serif",
 					//bgcolor: "primary.main",
 				}}
 			>
@@ -67,6 +71,7 @@ export function FullLog() {
 					sx={{
 						textAlign: "left",
 						paddingRight: "20px",
+						color: "white",
 					}}
 				>
 					<Typography fontWeight="bold">Published</Typography>
