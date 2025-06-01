@@ -21,8 +21,26 @@ export function FullLog() {
 
 	return (
 		<Box>
-			<h1>Your Rating of: {entry.title}</h1>
-			<h2>Book Information</h2>
+			<Box
+				sx={{
+					top: 0,
+					width: "90%",
+					display: "flex",
+					justifyContent: "flex-start",
+					flexDirection: "column",
+					textAlign: "left",
+					"& h1": {
+						margin: 0,
+					},
+					"& h2": {
+						margin: 0,
+					},
+				}}
+			>
+				<h1>{entry.title}</h1>
+				<h2>by {entry.author}</h2>
+			</Box>
+
 			<Box
 				sx={{
 					display: "grid",
@@ -31,9 +49,10 @@ export function FullLog() {
 					width: "100%",
 				}}
 			>
-				<Typography>Author: {entry.author}</Typography>
-				<Typography>{entry.genre}</Typography>
-				<Typography>{entry.yearPubl}</Typography>
+				<Typography></Typography>
+				<Typography>Genre: {entry.genre}</Typography>
+				<Typography>Year Published: {entry.yearPubl}</Typography>
+				<Typography>Page Number: {entry.pages}</Typography>
 			</Box>
 		</Box>
 	);
