@@ -19,22 +19,16 @@ export function FullLog() {
 		async function loadEntry() {
 			let data = await getOneBookEntry(id);
 			setEntry(data);
+
+			let bookData = await axios
+				.get(
+					`https://www.googleapis.com/books/v1/volumes?q=${data.title}+inauthor:${data.author}&maxResults=1&key=AIzaSyDktmhTLQB4VlwG1JpToRUenD90EMhRBYo`
+				)
+				.then((res) => console.log(res));
+			setOther(bookData);
 		}
 		loadEntry();
 	}, [id]);
-
-	useEffect(() => {
-		async function loadOther() {
-			let data = await axios
-				.get(
-					"https://www.googleapis.com/books/v1/volumes?q=hard+inauthor:dickens&maxResults=1&key=AIzaSyDktmhTLQB4VlwG1JpToRUenD90EMhRBYo"
-				)
-				.then((res) => console.log(res));
-			setOther(data);
-		}
-		loadOther();
-		console.log(other);
-	}, []);
 
 	return (
 		<Box
