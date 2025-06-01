@@ -55,6 +55,7 @@ bookEntryRoutes.route("/bookEntries").post(async (request, response) => {
 		pages: request.body.pages,
 		dateCreated: request.body.dateCreated,
 		user: request.body.user,
+		img: request.body.img,
 	};
 
 	let data = await db.collection("bookEntry").insertOne(mongoObject);
@@ -83,6 +84,7 @@ bookEntryRoutes.route("/bookEntries/:id").put(async (request, response) => {
 			pages: request.body.pages,
 			dateCreated: request.body.dateCreated,
 			user: request.body.user,
+			img: request.body.img,
 		},
 	};
 	let data = db

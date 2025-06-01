@@ -110,10 +110,10 @@ export function LogBook() {
 			pages: pages,
 			dateCreated: new Date(),
 			user: fetchUserId(),
+			img: thumbnail,
 		};
 
-		console.log(imgs);
-
+		console.log(createdObject);
 		//temporarily grabbing the id of the created object in case user wants to undo
 		const data = await createBookEntry(createdObject);
 		const insertedId = data["insertedId"];
@@ -136,7 +136,6 @@ export function LogBook() {
 		setEnjoyment(5);
 		setFormat("");
 		setPages(5);
-		console.log("made it here");
 	}
 
 	return (
@@ -252,11 +251,16 @@ export function LogBook() {
 					</Box>
 
 					<Box>
+						<p>Choose a Thumbnail</p>
 						{imgs.map((book) => {
-							console.log("here" + book.volumeInfo.title);
 							let tn = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail;
-							return (
-								<Button>
+
+							return thumbnail === tn ? (
+								<Button onClick={(ent) => setThumbnail(tn)}>
+									<img width="125px" src={tn}></img>{" "}
+								</Button>
+							) : (
+								<Button onClick={(ent) => setThumbnail(tn)}>
 									<img width="80px" src={tn}></img>{" "}
 								</Button>
 							);

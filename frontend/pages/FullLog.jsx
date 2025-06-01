@@ -49,97 +49,101 @@ export function FullLog() {
 		>
 			<Box
 				sx={{
-					top: 0,
-					width: "90%",
 					display: "flex",
-					justifyContent: "flex-start",
-					flexDirection: "column",
-					textAlign: "left",
-					"& h1": {
-						margin: 0,
-					},
-					"& h2": {
-						margin: 0,
-					},
-					paddingY: "10px",
-					color: "white",
-				}}
-			>
-				<h1>{entry.title}</h1>
-				<h2>by {entry.author}</h2>
-			</Box>
-			<Box
-				sx={{
-					display: "flex",
+					flexDirection: "row",
 					justifyContent: "space-between",
-					width: "100%",
-					padding: "4px",
-					textAlign: "left",
-					color: "white",
-					fontFamily: "Arial, sans-serif",
-					//bgcolor: "primary.main",
 				}}
 			>
-				<Box
-					sx={{
-						textAlign: "left",
-						paddingRight: "20px",
-						color: "white",
-					}}
-				>
-					<Typography fontWeight="bold">Published</Typography>
-					<Typography color="dark grey">{entry.yearPubl}</Typography>
+				<Box>
+					<img width="150px" src={entry.img}></img>
 				</Box>
+				<Box>
+					<Box
+						sx={{
+							top: 0,
+							width: "90%",
+							display: "flex",
+							justifyContent: "flex-start",
+							flexDirection: "column",
+							textAlign: "left",
+							"& h1": {
+								margin: 0,
+							},
+							"& h2": {
+								margin: 0,
+							},
+							paddingY: "10px",
+							color: "white",
+						}}
+					>
+						<h1>{entry.title}</h1>
+						<h2>by {entry.author}</h2>
+					</Box>
+					<Box
+						sx={{
+							display: "flex",
+							justifyContent: "space-between",
+							width: "100%",
+							padding: "4px",
+							textAlign: "left",
+							color: "white",
+							fontFamily: "Arial, sans-serif",
+							//bgcolor: "primary.main",
+						}}
+					>
+						<Box
+							sx={{
+								textAlign: "left",
+								paddingRight: "20px",
+								color: "white",
+							}}
+						>
+							<Typography fontWeight="bold">Published</Typography>
+							<Typography color="dark grey">{entry.yearPubl}</Typography>
+						</Box>
 
-				<Box
-					sx={{
-						textAlign: "left",
-						paddingRight: "20px",
-					}}
-				>
-					<Typography fontWeight="bold">Genre</Typography>
-					<Typography>{entry.genre}</Typography>
-				</Box>
+						<Box
+							sx={{
+								textAlign: "left",
+								paddingRight: "20px",
+							}}
+						>
+							<Typography fontWeight="bold">Genre</Typography>
+							<Typography>{entry.genre}</Typography>
+						</Box>
 
-				<Box
-					sx={{
-						textAlign: "left",
-						paddingRight: "20px",
-					}}
-				>
-					<Typography fontWeight="bold">Pages</Typography>
-					<Typography>{entry.pages}</Typography>
-				</Box>
+						<Box
+							sx={{
+								textAlign: "left",
+								paddingRight: "20px",
+							}}
+						>
+							<Typography fontWeight="bold">Pages</Typography>
+							<Typography>{entry.pages}</Typography>
+						</Box>
 
-				<Box
-					sx={{
-						textAlign: "left",
-						paddingRight: "20px",
-					}}
-				>
-					<Typography fontWeight="bold">Pages</Typography>
-					<Typography>{entry.pages}</Typography>
-				</Box>
+						<Box
+							sx={{
+								textAlign: "left",
+								paddingRight: "20px",
+							}}
+						>
+							<Typography fontWeight="bold">Pages</Typography>
+							<Typography>{entry.pages}</Typography>
+						</Box>
 
-				<Box
-					sx={{
-						textAlign: "left",
-						paddingRight: "20px",
-					}}
-				>
-					<Typography fontWeight="bold">Date Added</Typography>
-					<Typography>{formatDate(entry.dateCreated)}</Typography>
+						<Box
+							sx={{
+								textAlign: "left",
+								paddingRight: "20px",
+							}}
+						>
+							<Typography fontWeight="bold">Date Added</Typography>
+							<Typography>{formatDate(entry.dateCreated)}</Typography>
+						</Box>
+					</Box>
 				</Box>
 			</Box>
-			{other.map((book) => {
-				let tn = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail;
-				console.log(book);
-				return (
-					<Button>
-						<img width="80px" src={tn}></img>{" "}
-					</Button>
-				);
-			})}
 		</Box>
 	);
 }
