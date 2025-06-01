@@ -6,9 +6,11 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { rgbToHex } from "@mui/material";
 import { formatDate } from "../src/utils";
+import axios from "axios";
 
 export function FullLog() {
 	const [entry, setEntry] = useState({});
+	const [other, setOther] = useState({});
 	let params = useParams();
 	const navigate = useNavigate();
 	let id = params.id;
@@ -20,6 +22,19 @@ export function FullLog() {
 		}
 		loadEntry();
 	}, [id]);
+
+	useEffect(() => {
+		async function loadOther() {
+			let data = await axios
+				.get(
+					"https://www.googleapis.com/books/v1/volumes?q=hard+inauthor:dickens&maxResults=1&key=AIzaSyDktmhTLQB4VlwG1JpToRUenD90EMhRBYo"
+				)
+				.then((res) => console.log(res));
+			setOther(data);
+		}
+		loadOther();
+		console.log(other);
+	}, []);
 
 	return (
 		<Box
