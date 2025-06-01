@@ -4,6 +4,7 @@ import { getOneBookEntry } from "../src/api";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
+import { rgbToHex } from "@mui/material";
 
 export function FullLog() {
 	const [entry, setEntry] = useState({});
@@ -20,7 +21,16 @@ export function FullLog() {
 	}, [id]);
 
 	return (
-		<Box>
+		<Box
+			sx={{
+				margin: 0,
+				padding: 10,
+				position: "absolute",
+				top: 50,
+				left: 50,
+				width: "50%",
+			}}
+		>
 			<Box
 				sx={{
 					top: 0,
@@ -35,6 +45,7 @@ export function FullLog() {
 					"& h2": {
 						margin: 0,
 					},
+					paddingY: "10px",
 				}}
 			>
 				<h1>{entry.title}</h1>
@@ -44,39 +55,61 @@ export function FullLog() {
 			<Box
 				sx={{
 					display: "flex",
+					justifyContent: "space-between",
 					width: "100%",
 					padding: "4px",
 					textAlign: "left",
+					//bgcolor: "primary.main",
 				}}
 			>
 				<Box
 					sx={{
 						textAlign: "left",
-						paddingX: "20px",
+						paddingRight: "20px",
 					}}
 				>
-					<Typography>Published</Typography>
-					<Typography>{entry.yearPubl}</Typography>
+					<Typography fontWeight="bold">Published</Typography>
+					<Typography color="dark grey">{entry.yearPubl}</Typography>
 				</Box>
 
 				<Box
 					sx={{
 						textAlign: "left",
-						paddingX: "20px",
+						paddingRight: "20px",
 					}}
 				>
-					<Typography>Genre</Typography>
+					<Typography fontWeight="bold">Genre</Typography>
 					<Typography>{entry.genre}</Typography>
 				</Box>
 
 				<Box
 					sx={{
 						textAlign: "left",
-						paddingX: "20px",
+						paddingRight: "20px",
 					}}
 				>
-					<Typography>Pages</Typography>
+					<Typography fontWeight="bold">Pages</Typography>
 					<Typography>{entry.pages}</Typography>
+				</Box>
+
+				<Box
+					sx={{
+						textAlign: "left",
+						paddingRight: "20px",
+					}}
+				>
+					<Typography fontWeight="bold">Pages</Typography>
+					<Typography>{entry.pages}</Typography>
+				</Box>
+
+				<Box
+					sx={{
+						textAlign: "left",
+						paddingRight: "20px",
+					}}
+				>
+					<Typography fontWeight="bold">Date Added</Typography>
+					<Typography>{entry.dataCreated}</Typography>
 				</Box>
 			</Box>
 		</Box>
