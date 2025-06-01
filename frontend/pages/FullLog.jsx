@@ -24,7 +24,7 @@ export function FullLog() {
 
 			let bookData = await axios
 				.get(
-					`https://www.googleapis.com/books/v1/volumes?q=${data.title}+inauthor:${data.author}&maxResults=5&key=AIzaSyDktmhTLQB4VlwG1JpToRUenD90EMhRBYo`
+					`https://www.googleapis.com/books/v1/volumes?q=${data.title}+inauthor:${data.author}&maxResults=5&key=AIzaSyCOgcNZVDnmKBgxsTtW_lB3CHlMiHyD_yk`
 				)
 				.then((res) => setOther(res.data.items))
 				.catch((err) => console.log(err));

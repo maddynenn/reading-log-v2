@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import { Button, Rating } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createBookEntry } from "../src/api";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
@@ -12,6 +12,7 @@ import { Fragment } from "react";
 import { ThemeContext } from "@emotion/react";
 import { deleteBookEntry } from "../src/api";
 import * as jwt_decode from "jwt-decode";
+import axios from "axios";
 
 export function LogBook() {
 	const [title, setTitle] = useState("");
@@ -31,6 +32,9 @@ export function LogBook() {
 	const [pages, setPages] = useState(0);
 	const [dateCreated, setDateCreated] = useState(new Date());
 	const [user, setUser] = useState("");
+	const [thumbnail, setThumbnail] = useState("");
+
+	const [imgs, setImgs] = useState([]);
 
 	const [open, setOpen] = useState(false);
 
@@ -53,6 +57,21 @@ export function LogBook() {
 
 		console.log(tempId);
 	}
+
+	useEffect(() => {
+		async function fetchImgs() {
+			try {
+				const res = await axios.get(
+					`https://www.googleapis.com/books/v1/volumes?q=Hard Times+inauthor:Charles Dickens&maxResults=4&key=AIzaSyCOgcNZVDnmKBgxsTtW_lB3CHlMiHyD_yk`
+				);
+				setImgs(res.data.items);
+				console.log(res.data.items); // This will show the actual data
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		fetchImgs();
+	}, []);
 
 	const action = (
 		<Fragment>
@@ -92,6 +111,8 @@ export function LogBook() {
 			dateCreated: new Date(),
 			user: fetchUserId(),
 		};
+
+		console.log(imgs);
 
 		//temporarily grabbing the id of the created object in case user wants to undo
 		const data = await createBookEntry(createdObject);
@@ -228,6 +249,18 @@ export function LogBook() {
 							label="Enjoyment Rating"
 							onChange={(e) => setEnjoyment(e.target.value)}
 						></RatingInput>
+					</Box>
+
+					<Box>
+						{imgs.map((book) => {
+							console.log("here" + book.volumeInfo.title);
+							let tn = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail;
+							return (
+								<Button>
+									<img width="80px" src={tn}></img>{" "}
+								</Button>
+							);
+						})}
 					</Box>
 
 					<Button variant="outlined" type="submit" color="success">
