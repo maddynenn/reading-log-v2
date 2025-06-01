@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { rgbToHex } from "@mui/material";
+import { formatDate } from "../src/utils";
 
 export function FullLog() {
 	const [entry, setEntry] = useState({});
@@ -109,7 +110,7 @@ export function FullLog() {
 					}}
 				>
 					<Typography fontWeight="bold">Date Added</Typography>
-					<Typography>{entry.dataCreated}</Typography>
+					<Typography>{formatDate(entry.dateCreated)}</Typography>
 				</Box>
 			</Box>
 		</Box>
