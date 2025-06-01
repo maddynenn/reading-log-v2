@@ -27,10 +27,11 @@ export function FullLog() {
 				margin: 0,
 				padding: 10,
 				position: "absolute",
-				top: 50,
+				top: 75,
 				left: 50,
 				width: "50%",
 				bgcolor: "#37704c",
+				borderRadius: "10px 10px 0 0",
 			}}
 		>
 			<Box
