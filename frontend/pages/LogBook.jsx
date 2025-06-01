@@ -58,20 +58,43 @@ export function LogBook() {
 		console.log(tempId);
 	}
 
-	useEffect(() => {
-		async function fetchImgs() {
-			try {
-				const res = await axios.get(
-					`https://www.googleapis.com/books/v1/volumes?q=Hard Times+inauthor:Charles Dickens&maxResults=4&key=AIzaSyCOgcNZVDnmKBgxsTtW_lB3CHlMiHyD_yk`
-				);
-				setImgs(res.data.items);
-				console.log(res.data.items); // This will show the actual data
-			} catch (err) {
-				console.log(err);
-			}
+	async function fetchImgs() {
+		// Only search if both title and author have values
+		if (!title.trim() || !author.trim()) {
+			setImgs([]);
+			return;
 		}
-		fetchImgs();
-	}, []);
+
+		try {
+			const res = await axios.get(
+				`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
+					title
+				)}+inauthor:${encodeURIComponent(
+					author
+				)}&maxResults=4&key=AIzaSyCOgcNZVDnmKBgxsTtW_lB3CHlMiHyD_yk`
+			);
+
+			// Check if we got valid results
+			if (res.data.items) {
+				setImgs(res.data.items);
+			} else {
+				setImgs([]);
+			}
+		} catch (err) {
+			console.log(err);
+			setImgs([]);
+		}
+	}
+
+	useEffect(() => {
+		// Create a timeout to debounce the API call
+		const timeoutId = setTimeout(() => {
+			fetchImgs();
+		}, 500); // Wait 500ms after user stops typing
+
+		// Cleanup timeout if title or author changes again
+		return () => clearTimeout(timeoutId);
+	}, [title, author]); // Re-run when title or author changes
 
 	const action = (
 		<Fragment>
@@ -148,7 +171,10 @@ export function LogBook() {
 						label="Title"
 						variant="outlined"
 						sx={{ margin: "5px" }}
-						onChange={(e) => setTitle(e.target.value)}
+						onChange={(e) => {
+							setTitle(e.target.value);
+							fetchImgs();
+						}}
 						value={title}
 						required
 					/>
@@ -250,22 +276,34 @@ export function LogBook() {
 						></RatingInput>
 					</Box>
 
-					<Box>
-						<p>Choose a Thumbnail</p>
-						{imgs.map((book) => {
-							let tn = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail;
+					{imgs.length > 0 && (
+						<Box>
+							<p>Choose a Thumbnail</p>
+							{imgs.map((book, index) => {
+								let tn = book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.smallThumbnail;
 
-							return thumbnail === tn ? (
-								<Button onClick={(ent) => setThumbnail(tn)}>
-									<img width="125px" src={tn}></img>{" "}
-								</Button>
-							) : (
-								<Button onClick={(ent) => setThumbnail(tn)}>
-									<img width="80px" src={tn}></img>{" "}
-								</Button>
-							);
-						})}
-					</Box>
+								// Skip books without thumbnails
+								if (!tn) return null;
+
+								return (
+									<Button
+										key={index}
+										onClick={() => setThumbnail(tn)}
+										sx={{
+											border: thumbnail === tn ? "3px solid #37704c" : "none",
+											margin: "4px",
+										}}
+									>
+										<img
+											width={thumbnail === tn ? "100px" : "80px"}
+											src={tn}
+											alt={book.volumeInfo.title || "Book thumbnail"}
+										/>
+									</Button>
+								);
+							})}
+						</Box>
+					)}
 
 					<Button variant="outlined" type="submit" color="success">
 						Submit
