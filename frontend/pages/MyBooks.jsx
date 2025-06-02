@@ -5,7 +5,11 @@ import { EntryCard } from "../src/components/EntryCard";
 import * as jwt_decode from "jwt-decode";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
-import { calculateTotalPagesRead, calculatePagesReadThisMonth } from "../src/utils";
+import {
+	calculateTotalPagesRead,
+	calculatePagesReadThisMonth,
+	calculateTotalBooksRead,
+} from "../src/utils";
 
 export function MyBooks() {
 	const [books, setBooks] = useState([]);
@@ -36,7 +40,7 @@ export function MyBooks() {
 			>
 				MyBooks
 			</Typography>
-			<Typography>{calculatePagesReadThisMonth(books)}</Typography>
+			<Typography>{calculateTotalBooksRead(books)}</Typography>
 			<Box
 				sx={{
 					width: "100%",

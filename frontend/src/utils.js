@@ -37,3 +37,10 @@ export function calculatePagesReadThisMonth(books) {
 
 	return total;
 }
+
+export function calculateTotalBooksRead(books) {
+	const total = books.reduce((sum, book) => {
+		return sum + 1;
+	}, 0);
+	return total;
+}
