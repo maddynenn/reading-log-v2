@@ -4,6 +4,7 @@ import { getAllBookEntries } from "../src/api";
 import { EntryCard } from "../src/components/EntryCard";
 import * as jwt_decode from "jwt-decode";
 import Box from "@mui/material/Box";
+import { Typography } from "@mui/material";
 
 export function MyBooks() {
 	const [books, setBooks] = useState([]);
@@ -22,7 +23,17 @@ export function MyBooks() {
 
 	return (
 		<>
-			<h1>MyBooks</h1>
+			<Typography
+				sx={{
+					paddingY: "20px",
+					paddingX: "5px",
+					textAlign: "left",
+					paddingTop: "25px",
+				}}
+				fontSize={30}
+			>
+				MyBooks
+			</Typography>
 			<Box
 				sx={{
 					width: "100%",

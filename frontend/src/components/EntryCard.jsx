@@ -24,17 +24,40 @@ export function EntryCard({ entry }) {
 					boxShadow: 3,
 					border: 1,
 					borderColor: "black",
+					display: "flex",
+					flexDirection: "row",
+					alignItems: "center",
 				}}
 			>
-				<Typography p={0} class="entry">
-					{entry.title}
-				</Typography>
-				<Typography p={0} class="entry">
-					{entry.author}
-				</Typography>
-				<Typography p={0} class="entry">
-					{formatDate(entry.dateCreated)}
-				</Typography>
+				<Box
+					sx={{
+						paddingRight: "10px",
+						paddingTop: "5px",
+					}}
+				>
+					<img
+						style={{ border: "1px solid black", boxShadow: "2px 2px 10px black" }}
+						src={entry.img}
+						height={"70px"}
+					></img>
+				</Box>
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: "column",
+						alignItems: "flex-start",
+					}}
+				>
+					<Typography variant="h4" p={0} class="entry">
+						{entry.title}
+					</Typography>
+					<Typography variant="body1" sx={{ fontSize: "75%" }} p={0} class="entry">
+						{entry.author}
+					</Typography>
+					<Typography variant="body2" sx={{ fontSize: "75%" }} p={0} class="entry">
+						{formatDate(entry.dateCreated)}
+					</Typography>
+				</Box>
 			</Box>
 		</Link>
 	);
