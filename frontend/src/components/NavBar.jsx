@@ -15,17 +15,20 @@ export function NavBar() {
 	return (
 		<Box
 			sx={{
-				background: " #152b1b",
+				background: " #37704c",
 				position: "fixed",
 				top: 0,
 				left: 0,
 				width: "100%",
+				zIndex: 999,
 			}}
 		>
 			{pageData.map((page) => {
 				return (
 					<Link to={page.path}>
-						<Button sx={{ color: "white" }}>{page.name}</Button>
+						<Button id="navbar" sx={{ color: "white" }}>
+							{page.name}
+						</Button>
 					</Link>
 				);
 			})}
