@@ -17,21 +17,11 @@ export function calculateTotalPagesRead(books) {
 
 export function calculatePagesReadThisMonth(books) {
 	const total = books.reduce((sum, book) => {
-		const today = new Date();
-		const todaysMonth = today.getMonth();
-		const todaysYear = today.getFullYear();
-		const bookDate = new Date(book.dateCreated);
-		const bookMonth = bookDate.getMonth();
-		const bookYear = bookDate.getFullYear();
+		const isInMonth = thisMonth(book.dateCreated);
 		let newSum = sum;
-		if (
-			((todaysMonth - bookMonth === 1 || todaysMonth - bookMonth === 0) &&
-				todaysYear === bookYear) ||
-			(todaysYear - bookYear === 1 && todaysMonth === 1 && bookMonth === 12)
-		) {
+		if (isInMonth) {
 			newSum = sum + book.pages;
 		}
-		console.log(newSum);
 		return newSum;
 	}, 0);
 
@@ -43,4 +33,34 @@ export function calculateTotalBooksRead(books) {
 		return sum + 1;
 	}, 0);
 	return total;
+}
+
+export function calculateBooksReadThisMonth(books) {
+	const total = books.reduce((sum, book) => {
+		const isInMonth = thisMonth(book.dateCreated);
+		if (isInMonth) {
+			return sum + 1;
+		} else {
+			return sum;
+		}
+	}, 0);
+	return total;
+}
+
+function thisMonth(date) {
+	const today = new Date();
+	const todaysMonth = today.getMonth();
+	const todaysYear = today.getFullYear();
+	const bookDate = new Date(date);
+	const bookMonth = bookDate.getMonth();
+	const bookYear = bookDate.getFullYear();
+
+	if (
+		((todaysMonth - bookMonth === 1 || todaysMonth - bookMonth === 0) && todaysYear === bookYear) ||
+		(todaysYear - bookYear === 1 && todaysMonth === 1 && bookMonth === 12)
+	) {
+		return true;
+	} else {
+		return false;
+	}
 }

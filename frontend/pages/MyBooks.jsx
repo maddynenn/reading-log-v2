@@ -9,6 +9,7 @@ import {
 	calculateTotalPagesRead,
 	calculatePagesReadThisMonth,
 	calculateTotalBooksRead,
+	calculateBooksReadThisMonth,
 } from "../src/utils";
 
 export function MyBooks() {
@@ -40,7 +41,7 @@ export function MyBooks() {
 			>
 				MyBooks
 			</Typography>
-			<Typography>{calculateTotalBooksRead(books)}</Typography>
+			<Typography>{calculateBooksReadThisMonth(books)}</Typography>
 			<Box
 				sx={{
 					width: "100%",
