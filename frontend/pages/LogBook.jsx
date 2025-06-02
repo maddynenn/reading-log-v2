@@ -71,7 +71,7 @@ export function LogBook() {
 					title
 				)}+inauthor:${encodeURIComponent(
 					author
-				)}&maxResults=4&key=AIzaSyDktmhTLQB4VlwG1JpToRUenD90EMhRBYo`
+				)}&maxResults=4&key=AIzaSyCjemelYiEXya_bHdcsoH06GgJhW7Cu9hQ`
 			);
 
 			// Check if we got valid results

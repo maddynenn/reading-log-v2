@@ -5,6 +5,7 @@ import { EntryCard } from "../src/components/EntryCard";
 import * as jwt_decode from "jwt-decode";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
+import { calculateTotalPagesRead, calculatePagesReadThisMonth } from "../src/utils";
 
 export function MyBooks() {
 	const [books, setBooks] = useState([]);
@@ -16,6 +17,7 @@ export function MyBooks() {
 			const data = await getAllBookEntries();
 			const filteredData = data.filter((entry) => entry.user === decodedUser._id);
 			setBooks(filteredData);
+			console.log(filteredData);
 		}
 
 		loadAllBookEntries();
@@ -34,6 +36,7 @@ export function MyBooks() {
 			>
 				MyBooks
 			</Typography>
+			<Typography>{calculatePagesReadThisMonth(books)}</Typography>
 			<Box
 				sx={{
 					width: "100%",
