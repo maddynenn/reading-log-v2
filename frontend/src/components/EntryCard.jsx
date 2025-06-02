@@ -14,16 +14,27 @@ export function EntryCard({ entry }) {
 					borderRadius: 1,
 					padding: 1,
 					margin: 0.5,
-					bgcolor: "#7a8f64",
+					bgcolor: "#37704c",
 					"&:hover": {
 						bgcolor: "#152b1b",
 						color: "white",
 					},
+					minWidth: "300px",
+					color: "white",
+					boxShadow: 3,
+					border: 1,
+					borderColor: "black",
 				}}
 			>
-				<Typography>{entry.title}</Typography>
-				<Typography>{entry.author}</Typography>
-				<Typography>{formatDate(entry.dateCreated)}</Typography>
+				<Typography p={0} class="entry">
+					{entry.title}
+				</Typography>
+				<Typography p={0} class="entry">
+					{entry.author}
+				</Typography>
+				<Typography p={0} class="entry">
+					{formatDate(entry.dateCreated)}
+				</Typography>
 			</Box>
 		</Link>
 	);

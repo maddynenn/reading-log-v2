@@ -45,7 +45,7 @@ export function FullLog() {
 					left: 50,
 					width: "50%",
 					background: "linear-gradient(to right, #37704c, #52cc7e)",
-
+					boxShadow: 10,
 					borderRadius: "10px 10px 0 0",
 				}}
 			>
@@ -53,6 +53,7 @@ export function FullLog() {
 					sx={{
 						display: "flex",
 						flexDirection: "row",
+
 						//justifyContent: "space-between",
 					}}
 				>
@@ -151,6 +152,7 @@ export function FullLog() {
 					width: "50%",
 					bgcolor: "white",
 					borderRadius: "0 0 0 0",
+					boxShadow: 10,
 				}}
 			>
 				<p style={{ textAlign: "left", fontSize: "20px" }}>My ratings</p>
