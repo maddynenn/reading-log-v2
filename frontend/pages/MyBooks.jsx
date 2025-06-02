@@ -11,6 +11,7 @@ import {
 	calculateTotalBooksRead,
 	calculateBooksReadThisMonth,
 } from "../src/utils";
+import { InfoCard } from "../src/components/InfoCard";
 
 export function MyBooks() {
 	const [books, setBooks] = useState([]);
@@ -42,13 +43,13 @@ export function MyBooks() {
 				MyBooks
 			</Typography>
 			<Typography>{calculateBooksReadThisMonth(books)}</Typography>
+			<InfoCard title="Books Read This Month" value="4" subtitle="books" />
 			<Box
 				sx={{
 					width: "100%",
 					display: "grid",
 					gridTemplateColumns: "1fr 1fr 1fr",
 					gap: 5,
-					width: "100%",
 				}}
 			>
 				{books.map((book) => {
