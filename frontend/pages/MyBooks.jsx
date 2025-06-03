@@ -43,8 +43,6 @@ export function MyBooks() {
 			>
 				MyBooks
 			</Typography>
-			<Typography>{calculateOverallAverageRating(books)}</Typography>
-			<InfoCard title="Books Read This Month" value="4" subtitle="books" />
 			<Box
 				sx={{
 					width: "100%",
