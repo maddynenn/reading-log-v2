@@ -47,6 +47,14 @@ export function calculateBooksReadThisMonth(books) {
 	return total;
 }
 
+export function calculateOverallAverageRating(books) {
+	const total = books.reduce((sum, book) => {
+		return sum + book.overallRating;
+	}, 0);
+
+	return Math.trunc((total / calculateTotalBooksRead(books)) * 100) / 100;
+}
+
 function thisMonth(date) {
 	const today = new Date();
 	const todaysMonth = today.getMonth();

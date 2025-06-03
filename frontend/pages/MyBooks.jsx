@@ -10,6 +10,7 @@ import {
 	calculatePagesReadThisMonth,
 	calculateTotalBooksRead,
 	calculateBooksReadThisMonth,
+	calculateOverallAverageRating,
 } from "../src/utils";
 import { InfoCard } from "../src/components/InfoCard";
 
@@ -42,7 +43,7 @@ export function MyBooks() {
 			>
 				MyBooks
 			</Typography>
-			<Typography>{calculateBooksReadThisMonth(books)}</Typography>
+			<Typography>{calculateOverallAverageRating(books)}</Typography>
 			<InfoCard title="Books Read This Month" value="4" subtitle="books" />
 			<Box
 				sx={{
