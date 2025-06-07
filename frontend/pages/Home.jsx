@@ -25,8 +25,21 @@ export function Home() {
 	}, []);
 
 	return (
-		<>
-			<h1>Home</h1>
+		<Box
+			sx={{
+				display: "flex",
+				flexDirection: "column",
+				width: "100%",
+			}}
+		>
+			<Box
+				sx={{
+					alignSelf: "flex-start",
+				}}
+			>
+				<h1>Home</h1>
+			</Box>
+
 			<Box
 				sx={{
 					display: "flex",
@@ -62,6 +75,6 @@ export function Home() {
 					/>
 				</Box>
 			</Box>
-		</>
+		</Box>
 	);
 }
