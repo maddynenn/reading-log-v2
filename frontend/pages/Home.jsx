@@ -1,6 +1,10 @@
 import Box from "@mui/material/Box";
 import { InfoCard } from "../src/components/InfoCard";
-import { calculateBooksReadThisMonth } from "../src/utils";
+import {
+	calculateBooksReadThisMonth,
+	calculatePagesReadThisMonth,
+	calculateTotalBooksRead,
+} from "../src/utils";
 import { useState, useEffect } from "react";
 import * as jwt_decode from "jwt-decode";
 import { getAllBookEntries } from "../src/api";
@@ -28,7 +32,7 @@ export function Home() {
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "flex-start",
-					bgcolor: "yellow",
+					//bgcolor: "yellow",
 					width: "100%",
 				}}
 			>
@@ -38,11 +42,22 @@ export function Home() {
 						flexDirection: "row",
 						justifyContent: "space-between",
 						width: "100%",
+						//minWidth: "200px",
 					}}
 				>
 					<InfoCard
 						title="Books Read This Month"
 						value={calculateBooksReadThisMonth(books)}
+						subtitle="books"
+					/>
+					<InfoCard
+						title="Pages Read This Month"
+						value={calculatePagesReadThisMonth(books)}
+						subtitle="pages"
+					/>
+					<InfoCard
+						title="Total Books Read"
+						value={calculateTotalBooksRead(books)}
 						subtitle="books"
 					/>
 				</Box>
