@@ -18,7 +18,7 @@ export function PercentageProgressBar(props) {
 			<p style={{ margin: 0, marginBottom: "0px", textAlign: "left" }}>{props.category}</p>
 			<Box sx={{ display: "flex", alignItems: "center" }}>
 				<Box sx={{ width: "100%", mr: 1 }}>
-					<BorderLinearProgress color="success" variant="determinate" value={props.value * 10} />
+					<BorderLinearProgress color="success" variant="determinate" value={props.value} />
 				</Box>
 				<Box sx={{ minWidth: 35 }}>
 					<Typography variant="body2" sx={{ color: "text.secondary" }}>

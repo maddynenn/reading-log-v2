@@ -11,8 +11,16 @@ import { MyBooks } from "../pages/MyBooks";
 import { Profile } from "../pages/Profile";
 import { FullLog } from "../pages/FullLog";
 import { Layout } from "./components/Layout";
+import axios from "axios";
 
 function App() {
+	useEffect(() => {
+		let token = sessionStorage.getItem("User");
+		if (token) {
+			axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+		}
+	}, []);
+
 	return (
 		<>
 			<Router>

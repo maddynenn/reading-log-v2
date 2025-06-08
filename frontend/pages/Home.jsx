@@ -8,6 +8,7 @@ import {
 	findFirstMostRecent,
 	findSecondMostRecent,
 	findThirdMostRecent,
+	mostCommonGenre,
 } from "../src/utils";
 import { useState, useEffect } from "react";
 import * as jwt_decode from "jwt-decode";
@@ -159,7 +160,7 @@ export function Home() {
 						}}
 					>
 						{findThirdMostRecent(books) ? (
-							<EntryCard entry={findThirdMostRecent(books)}></EntryCard>
+							<EntryCard bgcolor={"yellow"} entry={findThirdMostRecent(books)}></EntryCard>
 						) : (
 							<></>
 						)}
@@ -187,13 +188,18 @@ export function Home() {
 					</Box>
 					<Box
 						sx={{
-							bgcolor: "yellow",
+							bgcolor: "#cdffcc",
 							paddingX: 2,
 							paddingTop: 1,
+							borderRadius: "8px",
+							boxShadow: 2,
 						}}
 					>
 						<Typography>Most Read Genres</Typography>
-						<PercentageProgressBar category={"hi"} value={5}></PercentageProgressBar>
+						<PercentageProgressBar
+							category={mostCommonGenre(books).genre}
+							value={mostCommonGenre(books).percent}
+						></PercentageProgressBar>
 					</Box>
 				</Box>
 			</Box>

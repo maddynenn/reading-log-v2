@@ -122,6 +122,35 @@ export function findThirdMostRecent(books) {
 	return mostRecent;
 }
 
+export function mostCommonGenre(books) {
+	if (!books || books.length === 0) {
+		return { genre: null, percent: 0 };
+	}
+
+	let max = 1;
+	let mostCommon = books[0].genre;
+
+	books.forEach((entry) => {
+		const thisGenre = entry.genre;
+		let newMax = 0;
+		books.forEach((entry) => {
+			if (entry.genre === thisGenre) {
+				newMax = newMax + 1;
+			}
+		});
+
+		if (newMax > max) {
+			max = newMax;
+			mostCommon = entry.genre;
+		}
+	});
+
+	let percentage = (max / books.length) * 100;
+	percentage = Math.trunc(percentage);
+
+	return { genre: mostCommon, percent: percentage };
+}
+
 function thisMonth(date) {
 	const today = new Date();
 	const todaysMonth = today.getMonth();
