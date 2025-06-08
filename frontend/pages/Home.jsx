@@ -4,10 +4,15 @@ import {
 	calculateBooksReadThisMonth,
 	calculatePagesReadThisMonth,
 	calculateTotalBooksRead,
+	findFirstMostRecent,
+	findSecondMostRecent,
+	findThirdMostRecent,
 } from "../src/utils";
 import { useState, useEffect } from "react";
 import * as jwt_decode from "jwt-decode";
 import { getAllBookEntries } from "../src/api";
+import { EntryCard } from "../src/components/EntryCard";
+import Typography from "@mui/material/Typography";
 export function Home() {
 	const [books, setBooks] = useState([]);
 
@@ -37,15 +42,10 @@ export function Home() {
 				sx={{
 					alignSelf: "flex-start",
 					borderBottom: 1,
+					marginLeft: 1,
 				}}
 			>
-				<h1
-					style={{
-						margin: 0,
-					}}
-				>
-					Home
-				</h1>
+				<Typography fontSize={30}>Home</Typography>
 			</Box>
 
 			<Box
@@ -104,6 +104,59 @@ export function Home() {
 						my: 2,
 					}}
 				/>
+				<Box
+					sx={{
+						borderBottom: 1,
+						borderColor: "black",
+						margin: 1,
+						marginY: 2,
+					}}
+				>
+					<Typography>Recently Finished</Typography>
+				</Box>
+				<Box
+					sx={{
+						display: "flex",
+						flexDirection: "row",
+						justifyContent: "space-between",
+						//alignItems: "center",
+						width: "98%",
+					}}
+				>
+					<Box
+						sx={{
+							paddingX: 1,
+						}}
+					>
+						{findFirstMostRecent(books) ? (
+							<EntryCard entry={findFirstMostRecent(books)}></EntryCard>
+						) : (
+							<></>
+						)}
+					</Box>
+					<Box
+						sx={{
+							paddingX: 1,
+						}}
+					>
+						{findSecondMostRecent(books) ? (
+							<EntryCard entry={findSecondMostRecent(books)}></EntryCard>
+						) : (
+							<></>
+						)}
+					</Box>
+					<Box
+						sx={{
+							paddingX: 1,
+						}}
+					>
+						{findThirdMostRecent(books) ? (
+							<EntryCard entry={findThirdMostRecent(books)}></EntryCard>
+						) : (
+							<></>
+						)}
+					</Box>
+				</Box>
 			</Box>
 		</Box>
 	);

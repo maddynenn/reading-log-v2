@@ -55,6 +55,73 @@ export function calculateOverallAverageRating(books) {
 	return Math.trunc((total / calculateTotalBooksRead(books)) * 100) / 100;
 }
 
+export function findFirstMostRecent(books) {
+	if (!books || books.length === 0) {
+		return null;
+	}
+
+	let mostRecent = books[0];
+
+	books.forEach((entry) => {
+		if (entry.dateCreated > mostRecent.dateCreated) {
+			mostRecent = entry;
+		}
+	});
+
+	return mostRecent;
+}
+
+export function findSecondMostRecent(books) {
+	if (!books || books.length === 1) {
+		return null;
+	}
+
+	const first = findFirstMostRecent(books);
+
+	let mostRecent;
+
+	if (books[0] !== first) {
+		mostRecent = books[0];
+	} else {
+		mostRecent = books[1];
+	}
+
+	books.forEach((entry) => {
+		if (entry.dateCreated > mostRecent.dateCreated && entry !== first) {
+			mostRecent = entry;
+		}
+	});
+
+	return mostRecent;
+}
+
+export function findThirdMostRecent(books) {
+	if (!books || books.length === 2) {
+		return null;
+	}
+
+	const first = findFirstMostRecent(books);
+	const second = findSecondMostRecent(books);
+
+	let mostRecent;
+
+	if (books[0] !== first && books[0] !== second) {
+		mostRecent = books[0];
+	} else if (books[1] !== first && books[1] !== second) {
+		mostRecent = books[1];
+	} else {
+		mostRecent = books[2];
+	}
+
+	books.forEach((entry) => {
+		if (entry.dateCreated > mostRecent.dateCreated && entry !== first && entry !== second) {
+			mostRecent = entry;
+		}
+	});
+
+	return mostRecent;
+}
+
 function thisMonth(date) {
 	const today = new Date();
 	const todaysMonth = today.getMonth();

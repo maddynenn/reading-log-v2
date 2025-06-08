@@ -43,6 +43,7 @@ export function MyBooks() {
 			>
 				My Books
 			</Typography>
+			<hr></hr>
 			<Box
 				sx={{
 					width: "100%",

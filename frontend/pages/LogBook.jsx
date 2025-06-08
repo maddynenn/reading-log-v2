@@ -8,6 +8,7 @@ import { RatingInput } from "../src/components/RatingInput";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import Typography from "@mui/material/Typography";
 import { Fragment } from "react";
 import { ThemeContext } from "@emotion/react";
 import { deleteBookEntry } from "../src/api";
@@ -163,7 +164,20 @@ export function LogBook() {
 
 	return (
 		<>
-			<h1>Log Your Book!</h1>
+			<Box
+				sx={{
+					width: "18%",
+					borderBottom: 1,
+					padding: 0,
+					marginTop: 3,
+					marginBottom: 2,
+				}}
+			>
+				<Typography textAlign="left" fontSize={30}>
+					Log Your Book!
+				</Typography>
+			</Box>
+
 			<div>
 				<form onSubmit={handleSubmit}>
 					<TextField
