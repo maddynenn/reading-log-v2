@@ -4,6 +4,7 @@ import {
 	calculateBooksReadThisMonth,
 	calculatePagesReadThisMonth,
 	calculateTotalBooksRead,
+	calculateTotalPagesRead,
 	findFirstMostRecent,
 	findSecondMostRecent,
 	findThirdMostRecent,
@@ -13,6 +14,8 @@ import * as jwt_decode from "jwt-decode";
 import { getAllBookEntries } from "../src/api";
 import { EntryCard } from "../src/components/EntryCard";
 import Typography from "@mui/material/Typography";
+import { ProgressWithLabel } from "../src/components/ProgressWithLabel";
+import { PercentageProgressBar } from "../src/components/PercentageProgressBar";
 export function Home() {
 	const [books, setBooks] = useState([]);
 
@@ -94,8 +97,13 @@ export function Home() {
 						value={calculateTotalBooksRead(books)}
 						subtitle="books"
 					/>
+					<InfoCard
+						title="Total Pages Read"
+						value={calculateTotalPagesRead(books)}
+						subtitle="pages"
+					></InfoCard>
 				</Box>
-				<Box
+				<Box //divider line
 					sx={{
 						width: "100%",
 						height: "1px",
@@ -155,6 +163,37 @@ export function Home() {
 						) : (
 							<></>
 						)}
+					</Box>
+				</Box>
+				<Box //divider line
+					sx={{
+						width: "100%",
+						height: "1px",
+						background:
+							"linear-gradient(to right, transparent 0%, #a1ada1 20%, #a1ada1 80%, transparent 100%)",
+						my: 2,
+					}}
+				/>
+				<Box>
+					<Box
+						sx={{
+							borderBottom: 1,
+							borderColor: "black",
+							margin: 1,
+							marginY: 2,
+						}}
+					>
+						<Typography>Reading Insights</Typography>
+					</Box>
+					<Box
+						sx={{
+							bgcolor: "yellow",
+							paddingX: 2,
+							paddingTop: 1,
+						}}
+					>
+						<Typography>Most Read Genres</Typography>
+						<PercentageProgressBar category={"hi"} value={5}></PercentageProgressBar>
 					</Box>
 				</Box>
 			</Box>
