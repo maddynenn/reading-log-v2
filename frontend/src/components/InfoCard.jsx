@@ -13,7 +13,7 @@ export function InfoCard(props) {
 					display: "flex",
 					alignItems: "flex-start",
 					flexDirection: "column",
-					width: "175px",
+					width: "200px",
 					padding: "10px",
 					paddingX: "15px",
 					margin: "10px",

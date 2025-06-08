@@ -41,7 +41,7 @@ export function MyBooks() {
 				}}
 				fontSize={30}
 			>
-				MyBooks
+				My Books
 			</Typography>
 			<Box
 				sx={{

@@ -30,23 +30,44 @@ export function Home() {
 				display: "flex",
 				flexDirection: "column",
 				width: "100%",
+				height: "100%",
 			}}
 		>
 			<Box
 				sx={{
 					alignSelf: "flex-start",
+					borderBottom: 1,
 				}}
 			>
-				<h1>Home</h1>
+				<h1
+					style={{
+						margin: 0,
+					}}
+				>
+					Home
+				</h1>
 			</Box>
 
+			<Box
+				sx={{
+					width: "100%",
+					height: "1px",
+					background:
+						"linear-gradient(to right, transparent 0%, #a1ada1 20%, #a1ada1 80%, transparent 100%)",
+					my: 2,
+				}}
+			/>
 			<Box
 				sx={{
 					display: "flex",
 					flexDirection: "column",
 					alignItems: "flex-start",
 					//bgcolor: "yellow",
-					width: "100%",
+					borderWidth: "1px",
+					width: "95vw",
+					//borderBottom: 1,
+					//borderTop: 1,
+					//borderColor: "black",
 				}}
 			>
 				<Box
@@ -74,6 +95,15 @@ export function Home() {
 						subtitle="books"
 					/>
 				</Box>
+				<Box
+					sx={{
+						width: "100%",
+						height: "1px",
+						background:
+							"linear-gradient(to right, transparent 0%, #a1ada1 20%, #a1ada1 80%, transparent 100%)",
+						my: 2,
+					}}
+				/>
 			</Box>
 		</Box>
 	);
