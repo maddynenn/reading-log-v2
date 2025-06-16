@@ -191,17 +191,19 @@ export function Home() {
 				/>
 				<Box width={"100%"}>
 					<Box>
-						<Box
-							sx={{
-								borderBottom: 1,
-								borderColor: "black",
-								margin: 1,
-								marginY: 2,
-								display: "flex",
-								width: "100%",
-							}}
-						>
-							<Typography>Reading Insights</Typography>
+						<Box>
+							<Box
+								sx={{
+									borderBottom: 1,
+									borderColor: "black",
+									margin: 1,
+									marginY: 2,
+									display: "flex",
+									width: "10.5%",
+								}}
+							>
+								<Typography>Reading Insights</Typography>
+							</Box>
 						</Box>
 					</Box>
 					<Box
