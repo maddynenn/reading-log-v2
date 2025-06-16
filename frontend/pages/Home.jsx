@@ -3,6 +3,7 @@ import { InfoCard } from "../src/components/InfoCard";
 import {
 	booksThisYear,
 	calculateBooksReadThisMonth,
+	calculateOverallAverageRating,
 	calculatePagesReadThisMonth,
 	calculateTotalBooksRead,
 	calculateTotalPagesRead,
@@ -18,7 +19,8 @@ import { EntryCard } from "../src/components/EntryCard";
 import Typography from "@mui/material/Typography";
 import { ProgressWithLabel } from "../src/components/ProgressWithLabel";
 import { PercentageProgressBar } from "../src/components/PercentageProgressBar";
-import { ScatterChart } from "@mui/x-charts";
+import StarIcon from "@mui/icons-material/Star";
+
 export function Home() {
 	const [books, setBooks] = useState([]);
 
@@ -34,6 +36,16 @@ export function Home() {
 
 		loadAllBookEntries();
 	}, []);
+
+	function starsToDisplay(rating) {
+		const stars = [];
+
+		for (let index = Math.trunc(rating); index > 0; index--) {
+			stars.push(<StarIcon></StarIcon>);
+		}
+		console.log("ahem");
+		return stars;
+	}
 
 	return (
 		<Box
@@ -177,54 +189,67 @@ export function Home() {
 						my: 2,
 					}}
 				/>
-				<Box>
-					<Box
-						sx={{
-							borderBottom: 1,
-							borderColor: "black",
-							margin: 1,
-							marginY: 2,
-						}}
-					>
-						<Typography>Reading Insights</Typography>
+				<Box width={"100%"}>
+					<Box>
+						<Box
+							sx={{
+								borderBottom: 1,
+								borderColor: "black",
+								margin: 1,
+								marginY: 2,
+								display: "flex",
+								width: "100%",
+							}}
+						>
+							<Typography>Reading Insights</Typography>
+						</Box>
 					</Box>
 					<Box
 						sx={{
-							bgcolor: "#cdffcc",
-							paddingX: 2,
-							paddingTop: 1,
-							borderRadius: "8px",
-							boxShadow: 2,
+							display: "flex",
+							flexDirection: "row",
+							alignItems: "flex-start",
+							width: "100%",
 						}}
 					>
-						<Typography>Most Read Genre</Typography>
-						<PercentageProgressBar
-							category={mostCommonGenre(books).genre}
-							value={mostCommonGenre(books).percent}
-						></PercentageProgressBar>
-					</Box>
-					<Box
-						sx={{
-							bgcolor: "#cdffcc",
-							paddingX: 2,
-							paddingTop: 1,
-							borderRadius: "8px",
-							boxShadow: 2,
-						}}
-					>
-						<Typography>Reading Rate This Year</Typography>
-						<ScatterChart
-							height={300}
-							series={[
-								{
-									label: "books read this year",
-									data: booksThisYear(books).map((entry) => ({
-										x: new Date(entry.dateCreated).getMonth(),
-										y: 5,
-									})),
-								},
-							]}
-						></ScatterChart>
+						<Box
+							sx={{
+								bgcolor: "#cdffcc",
+								paddingX: 2,
+								paddingTop: 1,
+								borderRadius: "8px",
+								boxShadow: 2,
+								marginX: 2,
+								width: "250px",
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "flex-start",
+							}}
+						>
+							<Typography>Most Read Genre</Typography>
+							<PercentageProgressBar
+								category={mostCommonGenre(books).genre}
+								value={mostCommonGenre(books).percent}
+							></PercentageProgressBar>
+						</Box>
+						<Box
+							sx={{
+								bgcolor: "#cdffcc",
+								paddingX: 2,
+								paddingTop: 1,
+								borderRadius: "8px",
+								boxShadow: 2,
+								marginX: 2,
+								width: "250px",
+								display: "flex",
+								flexDirection: "column",
+								alignItems: "flex-start",
+							}}
+						>
+							<Typography>Average Rating</Typography>
+							<p>{calculateOverallAverageRating(books)}</p>
+							<Box>{starsToDisplay(calculateOverallAverageRating(books))}</Box>
+						</Box>
 					</Box>
 				</Box>
 			</Box>
