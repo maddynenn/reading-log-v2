@@ -10,8 +10,6 @@ export function calculateTotalPagesRead(books) {
 		console.log(newSum);
 		return newSum;
 	}, 0);
-
-	console.log(total);
 	return total;
 }
 
@@ -53,6 +51,25 @@ export function calculateOverallAverageRating(books) {
 	}, 0);
 
 	return Math.trunc((total / calculateTotalBooksRead(books)) * 100) / 100;
+}
+
+export function booksThisYear(books) {
+	let bty = [];
+
+	if (!books || books.length === 0) {
+		return bty;
+	}
+
+	const today = new Date();
+	books.forEach((entry) => {
+		const entryDate = new Date(entry.dateCreated);
+		if (entryDate.getFullYear() == today.getFullYear()) {
+			bty.push(entry);
+		}
+	});
+
+	console.log(bty);
+	return bty;
 }
 
 export function findFirstMostRecent(books) {

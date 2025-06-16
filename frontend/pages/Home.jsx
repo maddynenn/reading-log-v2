@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import { InfoCard } from "../src/components/InfoCard";
 import {
+	booksThisYear,
 	calculateBooksReadThisMonth,
 	calculatePagesReadThisMonth,
 	calculateTotalBooksRead,
@@ -17,6 +18,7 @@ import { EntryCard } from "../src/components/EntryCard";
 import Typography from "@mui/material/Typography";
 import { ProgressWithLabel } from "../src/components/ProgressWithLabel";
 import { PercentageProgressBar } from "../src/components/PercentageProgressBar";
+import { ScatterChart } from "@mui/x-charts";
 export function Home() {
 	const [books, setBooks] = useState([]);
 
@@ -195,11 +197,34 @@ export function Home() {
 							boxShadow: 2,
 						}}
 					>
-						<Typography>Most Read Genres</Typography>
+						<Typography>Most Read Genre</Typography>
 						<PercentageProgressBar
 							category={mostCommonGenre(books).genre}
 							value={mostCommonGenre(books).percent}
 						></PercentageProgressBar>
+					</Box>
+					<Box
+						sx={{
+							bgcolor: "#cdffcc",
+							paddingX: 2,
+							paddingTop: 1,
+							borderRadius: "8px",
+							boxShadow: 2,
+						}}
+					>
+						<Typography>Reading Rate This Year</Typography>
+						<ScatterChart
+							height={300}
+							series={[
+								{
+									label: "books read this year",
+									data: booksThisYear(books).map((entry) => ({
+										x: new Date(entry.dateCreated).getMonth(),
+										y: 5,
+									})),
+								},
+							]}
+						></ScatterChart>
 					</Box>
 				</Box>
 			</Box>
