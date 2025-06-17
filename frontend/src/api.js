@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = "https://reading-log-v2.onrender.com/";
+const URL = "https://reading-log-v2.onrender.com";
 
 export async function getAllBookEntries() {
 	const response = await axios.get(`${URL}/bookEntries`);
