@@ -29,7 +29,6 @@ export function NavBar() {
 					paddingX: 2,
 				}}
 			>
-				{/* Left side - navigation links */}
 				<Box sx={{ display: "flex" }}>
 					{pageData.map((page, index) => {
 						return (
@@ -41,8 +40,6 @@ export function NavBar() {
 						);
 					})}
 				</Box>
-
-				{/* Right side - logout button */}
 				<Button
 					onClick={handleLogout}
 					sx={{
