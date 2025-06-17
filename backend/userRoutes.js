@@ -10,14 +10,18 @@ let userRoutes = express.Router();
 const SALT_ROUNDS = 6;
 
 userRoutes.route("/users").get(async (request, response) => {
-	let db = database.getDb();
+	try {
+		console.log("GET /users route hit");
+		let db = database.getDb();
+		console.log("Database connection obtained");
 
-	let data = await db.collection("users").find({}).toArray();
+		let data = await db.collection("users").find({}).toArray();
+		console.log("Data retrieved:", data.length, "users");
 
-	if (data.length > 0) {
-		return response.json(data);
-	} else {
-		throw new Error("uh oh this get all users route didnt work");
+		response.json(data);
+	} catch (error) {
+		console.error("Error in GET /users:", error);
+		response.status(500).json({ error: error.message });
 	}
 });
 
