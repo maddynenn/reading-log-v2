@@ -248,8 +248,8 @@ export function Home() {
 								alignItems: "flex-start",
 							}}
 						>
-							<Typography>Average Rating</Typography>
-							<p>{calculateOverallAverageRating(books)}</p>
+							<Typography>Average Overall Rating</Typography>
+							<p>{calculateOverallAverageRating(books)} stars</p>
 							<Box>{starsToDisplay(calculateOverallAverageRating(books))}</Box>
 						</Box>
 					</Box>
