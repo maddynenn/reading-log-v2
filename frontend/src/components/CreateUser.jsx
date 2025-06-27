@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createUser } from "../api";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 
 export function CreateUser() {
 	const [user, setUser] = useState({
@@ -11,6 +12,8 @@ export function CreateUser() {
 		password: "",
 	});
 
+	const navigate = useNavigate();
+
 	async function handleSubmit(e) {
 		e.preventDefault();
 		console.log(e);
@@ -18,7 +21,8 @@ export function CreateUser() {
 		if (data.status !== 200) {
 			alert("Create user failed");
 		}
-		console.log(data);
+		//console.log(data);
+		navigate("/home");
 	}
 
 	function handleChange(e) {
