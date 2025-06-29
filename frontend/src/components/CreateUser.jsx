@@ -16,13 +16,12 @@ export function CreateUser() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		console.log(e);
 		let data = await createUser(user);
 		if (data.status !== 200) {
 			alert("Create user failed");
+		} else {
+			navigate("/home");
 		}
-		//console.log(data);
-		navigate("/home");
 	}
 
 	function handleChange(e) {

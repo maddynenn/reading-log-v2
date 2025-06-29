@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const URL = "https://reading-log-v2.onrender.com";
+//const URL = "https://reading-log-v2.onrender.com";
+const URL = "http://localhost:8000";
 
 export async function getAllBookEntries() {
 	const response = await axios.get(`${URL}/bookEntries`);
@@ -72,7 +73,6 @@ export async function getOneUser(id) {
 }
 
 export async function createUser(user) {
-	console.log("aqui" + user.firstName);
 	const response = await axios.post(`${URL}/users`, user);
 
 	return response;
@@ -94,10 +94,8 @@ export async function verifyUser(user) {
 	const response = await axios.post(`${URL}/users/login`, user);
 
 	if (response.data.success) {
-		console.log("success!" + response.data);
 		return response.data.token;
 	} else {
-		console.log("failed here: " + response.data.message);
 		return;
 	}
 }
