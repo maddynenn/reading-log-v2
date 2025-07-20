@@ -14,6 +14,7 @@ import { ThemeContext } from "@emotion/react";
 import { deleteBookEntry } from "../src/api";
 import * as jwt_decode from "jwt-decode";
 import axios from "axios";
+import React from "react";
 
 export function LogBook() {
 	const [title, setTitle] = useState("");
@@ -67,13 +68,8 @@ export function LogBook() {
 		}
 
 		try {
-			const res = await axios.get(
-				`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
-					title
-				)}+inauthor:${encodeURIComponent(
-					author
-				)}&maxResults=4&key=AIzaSyCjemelYiEXya_bHdcsoH06GgJhW7Cu9hQ`
-			);
+			const google_key = import.meta.env.VITE_APP_GOOGLE_KEY_JULY;
+			const res = await axios.get(`/api/books?q=${encodeURIComponent(title)}+inauthor:${encodeURIComponent(author)}&maxResults=4&key=${google_key}`);
 
 			// Check if we got valid results
 			if (res.data.items) {
@@ -112,6 +108,7 @@ export function LogBook() {
 		const token = sessionStorage.getItem("User");
 		const decodedUser = jwt_decode.jwtDecode(token);
 		const userId = decodedUser._id;
+		console.log(userId);
 		return userId;
 	}
 
@@ -137,7 +134,6 @@ export function LogBook() {
 			img: thumbnail,
 		};
 
-		console.log(createdObject);
 		//temporarily grabbing the id of the created object in case user wants to undo
 		const data = await createBookEntry(createdObject);
 		const insertedId = data["insertedId"];
@@ -256,38 +252,14 @@ export function LogBook() {
 							width: "100%",
 						}}
 					>
-						<RatingInput
-							label="Overall Rating"
-							onChange={(e) => setOverallRating(e.target.value)}
-						></RatingInput>
-						<RatingInput
-							label="Atmosphere Rating"
-							onChange={(e) => setAtmosphere(e.target.value)}
-						></RatingInput>
-						<RatingInput
-							label="Plot Rating"
-							onChange={(e) => setPlot(e.target.value)}
-						></RatingInput>
-						<RatingInput
-							label="Writing Rating"
-							onChange={(e) => setWriting(e.target.value)}
-						></RatingInput>
-						<RatingInput
-							label="World-Building Rating"
-							onChange={(e) => setWorldBuilding(e.target.value)}
-						></RatingInput>
-						<RatingInput
-							label="Characters Rating"
-							onChange={(e) => setCharacters(e.target.value)}
-						></RatingInput>
-						<RatingInput
-							label="Emotion Rating"
-							onChange={(e) => setEmotion(e.target.value)}
-						></RatingInput>
-						<RatingInput
-							label="Enjoyment Rating"
-							onChange={(e) => setEnjoyment(e.target.value)}
-						></RatingInput>
+						<RatingInput label="Overall Rating" onChange={(e) => setOverallRating(e.target.value)}></RatingInput>
+						<RatingInput label="Atmosphere Rating" onChange={(e) => setAtmosphere(e.target.value)}></RatingInput>
+						<RatingInput label="Plot Rating" onChange={(e) => setPlot(e.target.value)}></RatingInput>
+						<RatingInput label="Writing Rating" onChange={(e) => setWriting(e.target.value)}></RatingInput>
+						<RatingInput label="World-Building Rating" onChange={(e) => setWorldBuilding(e.target.value)}></RatingInput>
+						<RatingInput label="Characters Rating" onChange={(e) => setCharacters(e.target.value)}></RatingInput>
+						<RatingInput label="Emotion Rating" onChange={(e) => setEmotion(e.target.value)}></RatingInput>
+						<RatingInput label="Enjoyment Rating" onChange={(e) => setEnjoyment(e.target.value)}></RatingInput>
 					</Box>
 
 					{imgs.length > 0 && (
@@ -308,11 +280,7 @@ export function LogBook() {
 											margin: "4px",
 										}}
 									>
-										<img
-											width={thumbnail === tn ? "100px" : "80px"}
-											src={tn}
-											alt={book.volumeInfo.title || "Book thumbnail"}
-										/>
+										<img width={thumbnail === tn ? "100px" : "80px"} src={tn} alt={book.volumeInfo.title || "Book thumbnail"} />
 									</Button>
 								);
 							})}
@@ -323,13 +291,7 @@ export function LogBook() {
 						Submit
 					</Button>
 
-					<Snackbar
-						open={open}
-						autoHideDuration={600000}
-						onClose={handleClose}
-						message="Book Entry Logged"
-						action={action}
-					/>
+					<Snackbar open={open} autoHideDuration={600000} onClose={handleClose} message="Book Entry Logged" action={action} />
 				</form>
 			</div>
 		</>

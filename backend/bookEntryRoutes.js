@@ -56,7 +56,7 @@ bookEntryRoutes.route("/bookEntries").post(verifyToken, async (request, response
 		format: request.body.format,
 		pages: request.body.pages,
 		dateCreated: request.body.dateCreated,
-		user: request.body.user,
+		user: request.body.user._id,
 		img: request.body.img,
 	};
 
@@ -89,9 +89,7 @@ bookEntryRoutes.route("/bookEntries/:id").put(verifyToken, async (request, respo
 			img: request.body.img,
 		},
 	};
-	let data = db
-		.collection("/bookEntry")
-		.updateOne({ _id: new ObjectId(request.params.id) }, mongoObject);
+	let data = db.collection("/bookEntry").updateOne({ _id: new ObjectId(request.params.id) }, mongoObject);
 	response.json(data);
 });
 
