@@ -22,20 +22,18 @@ function App() {
 	}, []);
 
 	return (
-		<>
-			<Router>
-				<Routes>
-					<Route path="/" element={<Landing />} />
-					<Route element={<Layout></Layout>}>
-						<Route path="/home" element={<Home />} />
-						<Route path="/logbook" element={<LogBook />} />
-						<Route path="/log/:id" element={<FullLog />} />
-						<Route path="/profile" element={<Profile />} />
-						<Route path="/mybooks" element={<MyBooks />} />
-					</Route>
-				</Routes>
-			</Router>
-		</>
+		<Router>
+			<Routes>
+				<Route path="/" element={<Landing />} />
+				<Route element={<Layout></Layout>}>
+					<Route path="/home" element={<Home />} />
+					<Route path="/logbook" element={<LogBook />} />
+					<Route path="/log/:id" element={<FullLog />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/mybooks" element={<MyBooks />} />
+				</Route>
+			</Routes>
+		</Router>
 	);
 }
 

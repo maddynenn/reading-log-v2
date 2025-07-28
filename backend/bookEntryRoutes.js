@@ -3,6 +3,7 @@ const database = require("./connect");
 const ObjectId = require("mongodb").ObjectId;
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "./config.env" });
+const axios = require("axios"); // Add this import at the top if not already there
 
 let bookEntryRoutes = express.Router();
 
@@ -121,3 +122,30 @@ function verifyToken(request, response, next) {
 }
 
 module.exports = bookEntryRoutes;
+
+// endpoint for Google Books API because CORS blocks frontend from calling API
+bookEntryRoutes.route("/books/search").get(async (request, response) => {
+	try {
+		const { title, author, maxResults = 4 } = request.query;
+
+		if (!title || !author) {
+			return response.status(400).json({ error: "Title and author parameters are required" });
+		}
+
+		const googleBooksUrl = "https://www.googleapis.com/books/v1/volumes";
+		const query = `${encodeURIComponent(title)}+inauthor:${encodeURIComponent(author)}`;
+		const apiKey = process.env.VITE_APP_GOOGLE_KEY_JULY;
+
+		const params = {
+			q: query,
+			maxResults,
+			key: apiKey,
+		};
+
+		const googleResponse = await axios.get(googleBooksUrl, { params });
+		response.json(googleResponse.data);
+	} catch (error) {
+		console.error("Google Books API error:", error.message);
+		response.status(500).json({ error: "Failed to fetch book data" });
+	}
+});
