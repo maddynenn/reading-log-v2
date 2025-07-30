@@ -30,7 +30,7 @@ bookEntryRoutes.route("/bookEntries").get(verifyToken, async (request, response)
 bookEntryRoutes.route("/bookEntries/:id").get(verifyToken, async (request, response) => {
 	let db = database.getDb();
 	let data = await db.collection("bookEntry").findOne({ _id: new ObjectId(request.params.id) });
-	if (Object.keys(data).length > 0) {
+	if (data && Object.keys(data).length > 0) {
 		response.json(data);
 	} else {
 		throw new Error("Data was not found");
