@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const mockDb = {
 	collection: jest.fn(() => ({
 		insertOne: jest.fn(() => Promise.resolve({ insertedId: "mock-id-123" })),
-		find: jest.fn(() => ({ toArray: jest.fn(() => Promise.resolve([])) })),
+		find: jest.fn(() => ({ toArray: jest.fn(() => Promise.resolve([{}, {}])) })),
 		findOne: jest.fn(() =>
 			Promise.resolve({
 				_id: "a3f8c92b4e7d5f61a9b0c4d3",
@@ -77,5 +77,12 @@ describe("Book Entry Routes", () => {
 			title: "test book",
 			author: "test author",
 		});
+	});
+
+	it("should retrieve all book entries in the database", async () => {
+		const response = await request(app).get("/bookEntries").set("Authorization", `Bearer ${testToken}`);
+
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual([{}, {}]);
 	});
 });
