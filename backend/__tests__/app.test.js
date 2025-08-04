@@ -67,7 +67,7 @@ describe("Book Entry Routes", () => {
 		expect(response.body.insertedId).toBe("mock-id-123");
 	});
 
-	// GET
+	// GET one
 	it("should retrieve a single piece of data", async () => {
 		const response = await request(app).get("/bookEntries/a3f8c92b4e7d5f61a9b0c4d3").set("Authorization", `Bearer ${testToken}`);
 
@@ -79,10 +79,25 @@ describe("Book Entry Routes", () => {
 		});
 	});
 
+	// GET all
 	it("should retrieve all book entries in the database", async () => {
 		const response = await request(app).get("/bookEntries").set("Authorization", `Bearer ${testToken}`);
 
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual([{}, {}]);
+	});
+
+	//Google API
+	it("should successfully retrieve a lot of data about a book from the Google Books API", async () => {
+		const response = await request(app).get("/books/search").set("Authorization", `Bearer ${testToken}`).query({
+			title: "Hard Times",
+			author: "Charles Dickens",
+			maxResults: 1,
+		});
+
+		console.log(response);
+		expect(response.status).toBe(200);
+
+		expect(response.body.items[0].id).toEqual("VVPmEAAAQBAJ");
 	});
 });
