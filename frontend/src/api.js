@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const URL = "https://reading-log-v2.onrender.com";
-const URL = "http://localhost:8000";
+const URL = "https://reading-log-v2.onrender.com";
+//const URL = "http://localhost:8000";
 
 export async function getAllBookEntries() {
 	const response = await axios.get(`${URL}/bookEntries`);
