@@ -134,5 +134,6 @@ describe("Book Entry Routes", () => {
 		const response = await request(app).put("/bookEntries/a3f8c92b4e7d5f61a9b0c4d3").set("Authorization", `Bearer ${testToken}`).send(bookData);
 
 		expect(response.status).toBe(200);
+		expect(response.body).toEqual({});
 	});
 });
