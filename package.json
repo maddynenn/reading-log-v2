@@ -1,20 +1,29 @@
 {
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.1.1",
-    "@mui/material": "^7.1.1",
+    "@mui/material": "^7.3.1",
     "@mui/styled-engine": "^7.1.1",
     "@mui/x-charts": "^8.5.2",
-    "chart.js": "^4.5.0"
+    "axios": "^1.11.0",
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.18.0",
+    "mongoose": "^8.17.1",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.8.0"
   },
   "devDependencies": {
     "jest": "^30.0.5",
     "mongodb-memory-server": "^10.1.4",
     "supertest": "^7.1.4"
   },
-
-   "scripts": {
+  "scripts": {
     "test": "jest --forceExit --detectOpenHandles",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -27,7 +36,7 @@
       "!**/node_modules/**",
       "!**/coverage/**"
     ],
-     "testPathIgnorePatterns": [
+    "testPathIgnorePatterns": [
       "/node_modules/",
       "__tests__/testDb.js"
     ]
