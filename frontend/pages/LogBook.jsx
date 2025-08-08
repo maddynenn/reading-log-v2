@@ -96,6 +96,8 @@ export function LogBook() {
 	async function handleSubmit(event) {
 		event.preventDefault();
 
+		setPages(parseInt(pages));
+
 		const createdObject = {
 			title,
 			author,
@@ -229,7 +231,7 @@ export function LogBook() {
 							label="Page Number"
 							variant="outlined"
 							sx={{ margin: "5px" }}
-							onChange={(e) => setPages(e.target.value)}
+							onChange={(e) => setPages(parseInt(e.target.value))}
 							value={pages === 0 ? "" : pages}
 							required
 						/>
