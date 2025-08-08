@@ -108,4 +108,31 @@ describe("Book Entry Routes", () => {
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual({ deletedCount: 1 });
 	});
+
+	// UPDATED ONE
+	it("should successfully change the associated object to the provided information", async () => {
+		const bookData = {
+			title: "Test Book",
+			author: "Test Author",
+			month: "Jan",
+			yearPubl: 2023,
+			genre: "Fiction",
+			overallRating: 4,
+			atmosphere: 5,
+			plot: 4,
+			writing: 4,
+			worldBuilding: 3,
+			characters: 5,
+			emotion: 4,
+			enjoyment: 5,
+			format: "Paperback",
+			pages: 300,
+			dateCreated: new Date(),
+			img: "http://example.com/newcover.jpg",
+		};
+
+		const response = await request(app).put("/bookEntries/a3f8c92b4e7d5f61a9b0c4d3").set("Authorization", `Bearer ${testToken}`).send(bookData);
+
+		expect(response.status).toBe(200);
+	});
 });
