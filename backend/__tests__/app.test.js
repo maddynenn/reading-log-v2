@@ -100,4 +100,12 @@ describe("Book Entry Routes", () => {
 
 		expect(response.body.items[0].id).toEqual("VVPmEAAAQBAJ");
 	});
+
+	// DELETE ONE
+	it("should successfully delete the associated object from the provided object id", async () => {
+		const response = await request(app).delete("/bookEntries/a3f8c92b4e7d5f61a9b0c4d3").set("Authorization", `Bearer ${testToken}`);
+
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({ deletedCount: 1 });
+	});
 });
