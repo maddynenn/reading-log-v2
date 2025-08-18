@@ -3,7 +3,7 @@ const database = require("./connect");
 const ObjectId = require("mongodb").ObjectId;
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: "./config.env" });
-const axios = require("axios"); // Add this import at the top if not already there
+const axios = require("axios");
 
 let bookEntryRoutes = express.Router();
 
@@ -90,7 +90,9 @@ bookEntryRoutes.route("/bookEntries/:id").put(verifyToken, async (request, respo
 			img: request.body.img,
 		},
 	};
-	let data = db.collection("/bookEntry").updateOne({ _id: new ObjectId(request.params.id) }, mongoObject);
+	let data = db
+		.collection("/bookEntry")
+		.updateOne({ _id: new ObjectId(request.params.id) }, mongoObject);
 	response.json(data);
 });
 

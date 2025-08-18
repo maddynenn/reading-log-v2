@@ -11,12 +11,9 @@ const SALT_ROUNDS = 6;
 
 userRoutes.route("/users").get(async (request, response) => {
 	try {
-		console.log("GET /users route hit");
 		let db = database.getDb();
-		console.log("Database connection obtained");
 
 		let data = await db.collection("users").find({}).toArray();
-		console.log("Data retrieved:", data.length, "users");
 
 		response.json(data);
 	} catch (error) {
@@ -88,11 +85,7 @@ userRoutes.route("/users/:id").delete(async (request, response) => {
 
 userRoutes.route("/users/login").post(async (request, response) => {
 	let db = database.getDb();
-	console.log("Request email:", request.body.email);
-	console.log("Request email length:", request.body.email.length);
-	//console.log("Trimmed email:", request.body.email.trim());
 	const user = await db.collection("users").findOne({ email: request.body.email });
-	console.log(user);
 	if (user) {
 		let confirmation = await bcrypt.compare(request.body.password, user.password);
 		if (confirmation) {

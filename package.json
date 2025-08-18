@@ -13,8 +13,7 @@
     "mongodb-memory-server": "^10.1.4",
     "supertest": "^7.1.4"
   },
-
-   "scripts": {
+  "scripts": {
     "test": "jest --forceExit --detectOpenHandles",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
@@ -27,7 +26,7 @@
       "!**/node_modules/**",
       "!**/coverage/**"
     ],
-     "testPathIgnorePatterns": [
+    "testPathIgnorePatterns": [
       "/node_modules/",
       "__tests__/testDb.js"
     ]
