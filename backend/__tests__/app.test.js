@@ -67,7 +67,7 @@ describe("Book Entry Routes", () => {
 		expect(response.body.insertedId).toBe("mock-id-123");
 	});
 
-	// GET
+	// GET one
 	it("should retrieve a single piece of data", async () => {
 		const response = await request(app).get("/bookEntries/a3f8c92b4e7d5f61a9b0c4d3").set("Authorization", `Bearer ${testToken}`);
 
@@ -79,10 +79,61 @@ describe("Book Entry Routes", () => {
 		});
 	});
 
+	// GET all
 	it("should retrieve all book entries in the database", async () => {
 		const response = await request(app).get("/bookEntries").set("Authorization", `Bearer ${testToken}`);
 
 		expect(response.status).toBe(200);
 		expect(response.body).toEqual([{}, {}]);
+	});
+
+	//Google API
+	it("should successfully retrieve a lot of data about a book from the Google Books API", async () => {
+		const response = await request(app).get("/books/search").set("Authorization", `Bearer ${testToken}`).query({
+			title: "Hard Times",
+			author: "Charles Dickens",
+			maxResults: 1,
+		});
+
+		console.log(response);
+		expect(response.status).toBe(200);
+
+		expect(response.body.items[0].id).toEqual("VVPmEAAAQBAJ");
+	});
+
+	// DELETE ONE
+	it("should successfully delete the associated object from the provided object id", async () => {
+		const response = await request(app).delete("/bookEntries/a3f8c92b4e7d5f61a9b0c4d3").set("Authorization", `Bearer ${testToken}`);
+
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({ deletedCount: 1 });
+	});
+
+	// UPDATED ONE
+	it("should successfully change the associated object to the provided information", async () => {
+		const bookData = {
+			title: "Test Book",
+			author: "Test Author",
+			month: "Jan",
+			yearPubl: 2023,
+			genre: "Fiction",
+			overallRating: 4,
+			atmosphere: 5,
+			plot: 4,
+			writing: 4,
+			worldBuilding: 3,
+			characters: 5,
+			emotion: 4,
+			enjoyment: 5,
+			format: "Paperback",
+			pages: 300,
+			dateCreated: new Date(),
+			img: "http://example.com/newcover.jpg",
+		};
+
+		const response = await request(app).put("/bookEntries/a3f8c92b4e7d5f61a9b0c4d3").set("Authorization", `Bearer ${testToken}`).send(bookData);
+
+		expect(response.status).toBe(200);
+		expect(response.body).toEqual({});
 	});
 });

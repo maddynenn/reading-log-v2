@@ -7,6 +7,7 @@ export function formatDate(date) {
 export function calculateTotalPagesRead(books) {
 	const total = books.reduce((sum, book) => {
 		const newSum = sum + book.pages;
+		console.log(newSum);
 		return newSum;
 	}, 0);
 	return total;
