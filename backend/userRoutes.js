@@ -89,7 +89,9 @@ userRoutes.route("/users/login").post(async (request, response) => {
 	if (user) {
 		let confirmation = await bcrypt.compare(request.body.password, user.password);
 		if (confirmation) {
-			const token = jwt.sign(user, process.env.SECRET_KEY, { expiresIn: "1hr" });
+			const token = jwt.sign({ id: user._id, email: user.email }, process.env.SECRET_KEY, {
+				expiresIn: "1hr",
+			});
 			response.json({ success: true, token });
 		} else {
 			response.json({
